@@ -15,34 +15,34 @@ type Flags struct {
 	available map[string]int
 }
 
-func (f *Flags) Bool(name string, usage string, flgs ...string) *bool {
+func (f *Flags) Bool(usage string, flgs ...string) *bool {
 	p := new(bool)
-	f.add(&Flag{Name: name, flags: flgs, Usage: usage, Value: newBool(p)})
+	f.add(&Flag{flags: flgs, Usage: usage, Value: newBool(p)})
 	return p
 }
 
-func (f *Flags) BoolVar(b *bool, name string, usage string, flgs ...string) {
-	f.add(&Flag{Name: name, flags: flgs, Usage: usage, Value: newBool(b)})
+func (f *Flags) BoolVar(b *bool, usage string, flgs ...string) {
+	f.add(&Flag{flags: flgs, Usage: usage, Value: newBool(b)})
 }
 
-func (f *Flags) Int(name string, def int, usage string, flgs ...string) *int {
+func (f *Flags) Int(def int, usage string, flgs ...string) *int {
 	p := new(int)
-	f.add(&Flag{Name: name, flags: flgs, Usage: usage, Value: newInt(def, p)})
+	f.add(&Flag{flags: flgs, Usage: usage, Value: newInt(def, p)})
 	return p
 }
 
-func (f *Flags) IntVar(i *int, name string, def int, usage string, flgs ...string) {
-	f.add(&Flag{Name: name, flags: flgs, Usage: usage, Value: newInt(def, i)})
+func (f *Flags) IntVar(i *int, def int, usage string, flgs ...string) {
+	f.add(&Flag{flags: flgs, Usage: usage, Value: newInt(def, i)})
 }
 
-func (f *Flags) String(name string, def string, usage string, flgs ...string) *string {
+func (f *Flags) String(def string, usage string, flgs ...string) *string {
 	p := new(string)
-	f.add(&Flag{Name: name, flags: flgs, Usage: usage, Value: newString(def, p)})
+	f.add(&Flag{flags: flgs, Usage: usage, Value: newString(def, p)})
 	return p
 }
 
-func (f *Flags) StringVar(s *string, name string, def string, usage string, flgs ...string) {
-	f.add(&Flag{Name: name, flags: flgs, Usage: usage, Value: newString(def, s)})
+func (f *Flags) StringVar(s *string, def string, usage string, flgs ...string) {
+	f.add(&Flag{flags: flgs, Usage: usage, Value: newString(def, s)})
 
 }
 

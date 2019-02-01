@@ -6,7 +6,6 @@ import (
 )
 
 type Flag struct {
-	Name  string
 	Usage string
 	flags []string
 	Value FlagValue

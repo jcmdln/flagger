@@ -10,17 +10,17 @@ func main() {
 	f := flagger.New()
 
 	//Bool flag
-	b := f.Bool("bool", "Test Bool", "-b", "--bool", "--boolean")
+	b := f.Bool("Test Bool", "-b", "--bool", "--boolean")
 
 	//int flag
-	i := f.Int("integer", 8, "Test Int", "-i", "--integer")
+	i := f.Int(8, "Test Int", "-i", "--integer")
 
 	//string flag
-	s := f.String("string", "h", "Test String", "-s", "--string")
+	s := f.String("h", "Test String", "-s", "--string")
 
 	//help flag
 	var help bool
-	f.BoolVar(&help, "help", "Show the Help", "-h", "--help")
+	f.BoolVar(&help, "Show the Help", "-h", "--help")
 
 	fmt.Printf("Before\n")
 	fmt.Printf("  Bool:   %t\n", *b)
