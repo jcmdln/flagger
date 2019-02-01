@@ -3,6 +3,8 @@ POSIX-like CLI Flag interpreter
 
 ## Example
 
+See "test" folder for working examples
+
 flagger allows much more freedom to the user when passing in flags.  It also allows flags to have multiple variations, such as a short and long form.  The following application has the available flags:
 ```sh
   -b, --bool, --boolean         Bool Flag
@@ -50,4 +52,33 @@ Once all of your flags are in place, you can call the Parse() method to process 
 
 ## Commands
 
-flagger also has a sub-package named "Commands" that allows
+flagger also has a sub-package named "Commands" that allows for variations of flags based on a root command given.  For instance:
+
+```sh
+	$ ./goapp new -bn
+	 #Output of command "new"
+
+	$ ./goapp run -bni 9
+	 #Output of command "run"
+```
+
+Each command has its own set of flags.  To use command in an application, it is recommended that you create an object with the "New()" function
+
+```go
+	cmd := commands.New()
+```
+
+To create a valid command, you must create a data type that satisfies the "Commander" interface. The most basic this could be is:
+
+```go
+	type command struct {}
+	func (c *command) Prepare(flags *flagger.Flags) {}
+	func (c *command) Action(s []string, flags *flagger.Flags) error { return nil }
+```
+
+Once you have your data, you can use the function "Add" to place them into the Commands object
+
+```go
+	c := command{}
+	cmd.Add("command", &c)
+```
