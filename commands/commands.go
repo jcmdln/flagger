@@ -3,7 +3,8 @@ package commands
 import (
 	"errors"
 	"fmt"
-	"github.com/hlfstr/flagger"
+
+	"github.com/jcmdln/flagger"
 )
 
 var (
