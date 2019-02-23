@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	NoFlags = errors.New("No flags passed")
+	NoFlags = errors.New("missing operand")
 )
 
 type Flags struct {
@@ -136,7 +136,7 @@ func (f Flags) Parse(flags []string) ([]string, error) {
 			if index, ok := f.available[fgs[i]]; ok {
 				found = f.flags[index]
 			} else {
-				return nil, fmt.Errorf("No such flag %s", fgs[i])
+				return nil, fmt.Errorf("no such flag %s", fgs[i])
 			}
 		}
 		switch found.Value.(type) {
@@ -148,10 +148,10 @@ func (f Flags) Parse(flags []string) ([]string, error) {
 			if (i + 1) < len(fgs) {
 				i++
 				if err = found.Value.Set(fgs[i]); err != nil {
-					return nil, fmt.Errorf("Value %s is not compatible with flag %s", fgs[i], fgs[i-1])
+					return nil, fmt.Errorf("value %s is not compatible with flag %s", fgs[i], fgs[i-1])
 				}
 			} else {
-				return nil, fmt.Errorf("No value passed into flag %s", fgs[i])
+				return nil, fmt.Errorf("no value passed into flag %s", fgs[i])
 			}
 		}
 

@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	NoCmds = errors.New("No Commands passed")
+	NoCmds = errors.New("missing operand")
 )
 
 type Commander interface {
@@ -45,7 +45,7 @@ func (c Commands) Parse(flags []string) error {
 			v.Prepare(f)
 			return v.Action(flags[1:], f)
 		}
-		return fmt.Errorf("Unable to locate command %s", flags[0])
+		return fmt.Errorf("no such command %s", flags[0])
 	}
 	return NoCmds
 }
